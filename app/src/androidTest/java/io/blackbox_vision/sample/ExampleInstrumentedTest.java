@@ -1,4 +1,4 @@
-package io.blackbox_vision.dateedittextsample;
+package io.blackbox_vision.sample;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

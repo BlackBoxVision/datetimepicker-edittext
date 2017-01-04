@@ -1,6 +1,5 @@
 package io.blackbox_vision.datetimepickeredittext.view;
 
-import android.app.DatePickerDialog;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
@@ -14,11 +13,14 @@ import java.util.Locale;
 
 import io.blackbox_vision.datetimepickeredittext.internal.DatePickerFragment;
 
+import static android.view.View.OnFocusChangeListener;
+import static android.app.DatePickerDialog.OnDateSetListener;
 
-public final class DatePickerInputEditText extends TextInputEditText implements View.OnFocusChangeListener, DatePickerDialog.OnDateSetListener {
+
+public final class DatePickerInputEditText extends TextInputEditText implements OnFocusChangeListener, OnDateSetListener {
     private static final String TAG = DatePickerInputEditText.class.getSimpleName();
 
-    private View.OnFocusChangeListener onFocusChangedListener;
+    private OnFocusChangeListener onFocusChangedListener;
     private FragmentManager manager;
     private Calendar date;
 

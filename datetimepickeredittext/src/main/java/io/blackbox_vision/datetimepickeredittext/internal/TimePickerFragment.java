@@ -14,16 +14,16 @@ import static android.app.TimePickerDialog.OnTimeSetListener;
 public final class TimePickerFragment extends DialogFragment {
     private OnTimeSetListener onTimeSetListener;
     private Boolean is24HourView;
-    private Calendar date;
+    private Calendar time;
 
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         int hourOfDay, minute;
 
-        if (null != date) {
-            hourOfDay = date.get(Calendar.HOUR_OF_DAY);
-            minute = date.get(Calendar.MINUTE);
+        if (null != time) {
+            hourOfDay = time.get(Calendar.HOUR_OF_DAY);
+            minute = time.get(Calendar.MINUTE);
         } else {
             final Calendar c = Calendar.getInstance();
 
@@ -31,7 +31,7 @@ public final class TimePickerFragment extends DialogFragment {
             minute = c.get(Calendar.MINUTE);
         }
 
-        if (null != is24HourView) {
+        if (null == is24HourView) {
             is24HourView = true;
         }
 
@@ -48,8 +48,8 @@ public final class TimePickerFragment extends DialogFragment {
         return this;
     }
 
-    public TimePickerFragment setDate(@NonNull Calendar date) {
-        this.date = date;
+    public TimePickerFragment setTime(@NonNull Calendar time) {
+        this.time = time;
         return this;
     }
 }

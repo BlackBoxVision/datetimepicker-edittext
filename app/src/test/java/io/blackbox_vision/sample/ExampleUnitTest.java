@@ -1,4 +1,4 @@
-package io.blackbox_vision.dateedittextsample;
+package io.blackbox_vision.sample;
 
 import org.junit.Test;
 
