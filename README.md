@@ -151,6 +151,6 @@ public final class MainActivity extends AppCompatActivity {
     }
 }
 ```
-License
+##License
 
 Distributed under the MIT license. See LICENSE for more information.
