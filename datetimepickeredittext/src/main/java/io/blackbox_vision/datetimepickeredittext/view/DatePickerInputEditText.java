@@ -1,17 +1,21 @@
 package io.blackbox_vision.datetimepickeredittext.view;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.FragmentManager;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.DatePicker;
 
 import java.util.Calendar;
 import java.util.Locale;
 
-import io.blackbox_vision.datetimepickeredittext.internal.DatePickerFragment;
+import io.blackbox_vision.datetimepickeredittext.R;
+import io.blackbox_vision.datetimepickeredittext.internal.fragment.DatePickerFragment;
+import io.blackbox_vision.datetimepickeredittext.internal.utils.Utils;
 
 import static android.view.View.OnFocusChangeListener;
 import static android.app.DatePickerDialog.OnDateSetListener;
@@ -19,9 +23,11 @@ import static android.app.DatePickerDialog.OnDateSetListener;
 
 public final class DatePickerInputEditText extends TextInputEditText implements OnFocusChangeListener, OnDateSetListener {
     private static final String TAG = DatePickerInputEditText.class.getSimpleName();
+    private static final String DATE_TEMPLATE = "dd/MM/yyyy";
 
     private OnFocusChangeListener onFocusChangedListener;
     private FragmentManager manager;
+    private String dateFormat;
     private Calendar date;
 
     public DatePickerInputEditText(Context context) {
@@ -31,11 +37,13 @@ public final class DatePickerInputEditText extends TextInputEditText implements 
 
     public DatePickerInputEditText(Context context, AttributeSet attrs) {
         super(context, attrs);
+        handleAttributes(attrs);
         init();
     }
 
     public DatePickerInputEditText(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        handleAttributes(attrs);
         init();
     }
 
@@ -43,21 +51,32 @@ public final class DatePickerInputEditText extends TextInputEditText implements 
         setOnFocusChangeListener(this);
     }
 
-    private void initDatePickerFragment() {
-        final DatePickerFragment datePickerFragment = new DatePickerFragment();
+    private void handleAttributes(@NonNull AttributeSet attributeSet) {
+        try {
+            final TypedArray array = getContext().obtainStyledAttributes(attributeSet, R.styleable.DatePickerEditText);
 
-        if (null != date) {
-            datePickerFragment.setDate(date);
+            dateFormat = array.getString(R.styleable.DatePickerEditText_dateFormat);
+
+            array.recycle();
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
-
-        datePickerFragment.setOnDateSetListener(this);
-        datePickerFragment.show(manager, TAG);
     }
 
     @Override
     public void onFocusChange(View view, boolean isFocused) {
+        final InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(getWindowToken(), InputMethodManager.HIDE_IMPLICIT_ONLY);
+
         if (isFocused) {
-            initDatePickerFragment();
+            final DatePickerFragment datePickerFragment = new DatePickerFragment();
+
+            if (null != date) {
+                datePickerFragment.setDate(date);
+            }
+
+            datePickerFragment.setOnDateSetListener(this);
+            datePickerFragment.show(manager, TAG);
         }
 
         if (null != onFocusChangedListener) {
@@ -73,8 +92,12 @@ public final class DatePickerInputEditText extends TextInputEditText implements 
         date.set(Calendar.MONTH, monthOfYear);
         date.set(Calendar.DAY_OF_MONTH, dayOfMonth);
 
-        this.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+        this.setText(Utils.format(date.getTime(), dateFormat != null? dateFormat : DATE_TEMPLATE));
         this.date = date;
+    }
+
+    public FragmentManager getManager() {
+        return manager;
     }
 
     public DatePickerInputEditText setManager(@NonNull FragmentManager manager) {
@@ -82,13 +105,30 @@ public final class DatePickerInputEditText extends TextInputEditText implements 
         return this;
     }
 
+    public Calendar getDate() {
+        return date;
+    }
+
     public DatePickerInputEditText setDate(@NonNull Calendar date) {
         this.date = date;
         return this;
     }
 
+    public OnFocusChangeListener getOnFocusChangedListener() {
+        return onFocusChangedListener;
+    }
+
     public DatePickerInputEditText setOnFocusChangedListener(View.OnFocusChangeListener onFocusChangedListener) {
         this.onFocusChangedListener = onFocusChangedListener;
+        return this;
+    }
+
+    public String getDateFormat() {
+        return dateFormat;
+    }
+
+    public DatePickerInputEditText setDateFormat(String dateFormat) {
+        this.dateFormat = dateFormat;
         return this;
     }
 }

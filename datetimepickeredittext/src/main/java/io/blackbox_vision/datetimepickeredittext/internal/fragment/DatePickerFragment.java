@@ -1,4 +1,4 @@
-package io.blackbox_vision.datetimepickeredittext.internal;
+package io.blackbox_vision.datetimepickeredittext.internal.fragment;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;

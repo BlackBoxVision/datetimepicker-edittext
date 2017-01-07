@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -36,7 +37,8 @@
             android:id="@+id/datePickerInputEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/select_date"/>
+            android:hint="@string/select_date"
+            app:dateFormat="yyyy/MM/dd"/>
 
     </android.support.design.widget.TextInputLayout>
 
@@ -50,7 +52,8 @@
             android:id="@+id/timePickerInputEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/select_date"/>
+            android:hint="@string/select_time"
+            app:timeFormat="HH:mm"/>
 
     </android.support.design.widget.TextInputLayout>
 

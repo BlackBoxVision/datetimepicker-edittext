@@ -28,6 +28,7 @@ public final class MainActivity extends AppCompatActivity {
 
         datePickerInputEditText = (DatePickerInputEditText) findViewById(R.id.datePickerInputEditText);
         timePickerInputEditText = (TimePickerInputEditText) findViewById(R.id.timePickerInputEditText);
+
         datePickerEditText.setManager(getSupportFragmentManager());
         timePickerEditText.setManager(getSupportFragmentManager());
 

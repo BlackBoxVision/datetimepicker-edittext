@@ -1,17 +1,21 @@
 package io.blackbox_vision.datetimepickeredittext.view;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.DatePicker;
 import android.widget.EditText;
 
 import java.util.Calendar;
 import java.util.Locale;
 
-import io.blackbox_vision.datetimepickeredittext.internal.DatePickerFragment;
+import io.blackbox_vision.datetimepickeredittext.R;
+import io.blackbox_vision.datetimepickeredittext.internal.fragment.DatePickerFragment;
+import io.blackbox_vision.datetimepickeredittext.internal.utils.Utils;
 
 import static android.view.View.OnFocusChangeListener;
 import static android.app.DatePickerDialog.OnDateSetListener;
@@ -19,9 +23,11 @@ import static android.app.DatePickerDialog.OnDateSetListener;
 
 public final class DatePickerEditText extends EditText implements OnFocusChangeListener, OnDateSetListener {
     private static final String TAG = DatePickerEditText.class.getSimpleName();
+    private static final String DATE_TEMPLATE = "dd/MM/yyyy";
 
     private OnFocusChangeListener onFocusChangedListener;
     private FragmentManager manager;
+    private String dateFormat;
     private Calendar date;
 
     public DatePickerEditText(Context context) {
@@ -31,11 +37,13 @@ public final class DatePickerEditText extends EditText implements OnFocusChangeL
 
     public DatePickerEditText(Context context, AttributeSet attrs) {
         super(context, attrs);
+        handleAttributes(attrs);
         init();
     }
 
     public DatePickerEditText(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        handleAttributes(attrs);
         init();
     }
 
@@ -43,21 +51,32 @@ public final class DatePickerEditText extends EditText implements OnFocusChangeL
         setOnFocusChangeListener(this);
     }
 
-    private void initDatePickerFragment() {
-        final DatePickerFragment datePickerFragment = new DatePickerFragment();
+    private void handleAttributes(@NonNull AttributeSet attributeSet) {
+        try {
+            final TypedArray array = getContext().obtainStyledAttributes(attributeSet, R.styleable.DatePickerEditText);
 
-        if (null != date) {
-            datePickerFragment.setDate(date);
+            dateFormat = array.getString(R.styleable.DatePickerEditText_dateFormat);
+
+            array.recycle();
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
-
-        datePickerFragment.setOnDateSetListener(this);
-        datePickerFragment.show(manager, TAG);
     }
 
     @Override
     public void onFocusChange(View view, boolean isFocused) {
+        final InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(getWindowToken(), InputMethodManager.HIDE_IMPLICIT_ONLY);
+
         if (isFocused) {
-            initDatePickerFragment();
+            final DatePickerFragment datePickerFragment = new DatePickerFragment();
+
+            if (null != date) {
+                datePickerFragment.setDate(date);
+            }
+
+            datePickerFragment.setOnDateSetListener(this);
+            datePickerFragment.show(manager, TAG);
         }
 
         if (null != onFocusChangedListener) {
@@ -73,8 +92,12 @@ public final class DatePickerEditText extends EditText implements OnFocusChangeL
         date.set(Calendar.MONTH, monthOfYear);
         date.set(Calendar.DAY_OF_MONTH, dayOfMonth);
 
-        this.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+        this.setText(Utils.format(date.getTime(), dateFormat != null? dateFormat : DATE_TEMPLATE));
         this.date = date;
+    }
+
+    public FragmentManager getManager() {
+        return manager;
     }
 
     public DatePickerEditText setManager(@NonNull FragmentManager manager) {
@@ -82,13 +105,30 @@ public final class DatePickerEditText extends EditText implements OnFocusChangeL
         return this;
     }
 
+    public Calendar getDate() {
+        return date;
+    }
+
     public DatePickerEditText setDate(@NonNull Calendar date) {
         this.date = date;
         return this;
     }
 
+    public OnFocusChangeListener getOnFocusChangedListener() {
+        return onFocusChangedListener;
+    }
+
     public DatePickerEditText setOnFocusChangedListener(OnFocusChangeListener onFocusChangedListener) {
         this.onFocusChangedListener = onFocusChangedListener;
+        return this;
+    }
+
+    public String getDateFormat() {
+        return dateFormat;
+    }
+
+    public DatePickerEditText setDateFormat(String dateFormat) {
+        this.dateFormat = dateFormat;
         return this;
     }
 }
