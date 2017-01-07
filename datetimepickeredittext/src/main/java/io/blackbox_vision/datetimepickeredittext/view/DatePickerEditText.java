@@ -15,7 +15,7 @@ import java.util.Locale;
 
 import io.blackbox_vision.datetimepickeredittext.R;
 import io.blackbox_vision.datetimepickeredittext.internal.fragment.DatePickerFragment;
-import io.blackbox_vision.datetimepickeredittext.internal.utils.Utils;
+import io.blackbox_vision.datetimepickeredittext.internal.utils.DateUtils;
 
 import static android.view.View.OnFocusChangeListener;
 import static android.app.DatePickerDialog.OnDateSetListener;
@@ -23,7 +23,6 @@ import static android.app.DatePickerDialog.OnDateSetListener;
 
 public final class DatePickerEditText extends EditText implements OnFocusChangeListener, OnDateSetListener {
     private static final String TAG = DatePickerEditText.class.getSimpleName();
-    private static final String DATE_TEMPLATE = "dd/MM/yyyy";
 
     private OnFocusChangeListener onFocusChangedListener;
     private FragmentManager manager;
@@ -86,14 +85,14 @@ public final class DatePickerEditText extends EditText implements OnFocusChangeL
 
     @Override
     public void onDateSet(DatePicker datePicker, int year, int monthOfYear, int dayOfMonth) {
-        final Calendar date = Calendar.getInstance(Locale.getDefault());
+        final Calendar calendar = Calendar.getInstance(Locale.getDefault());
 
-        date.set(Calendar.YEAR, year);
-        date.set(Calendar.MONTH, monthOfYear);
-        date.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+        calendar.set(Calendar.YEAR, year);
+        calendar.set(Calendar.MONTH, monthOfYear);
+        calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
 
-        this.setText(Utils.format(date.getTime(), dateFormat != null? dateFormat : DATE_TEMPLATE));
-        this.date = date;
+        setText(DateUtils.toDate(calendar.getTime(), dateFormat));
+        date = calendar;
     }
 
     public FragmentManager getManager() {
