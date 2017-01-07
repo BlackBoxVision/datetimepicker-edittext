@@ -22,7 +22,7 @@ allprojects {
 - Add the dependency:
 ```gradle
 dependencies {
-	 compile 'com.github.BlackBoxVision:datetimepicker-edittext:v0.0.2'
+	 compile 'com.github.BlackBoxVision:datetimepicker-edittext:v0.1.0'
 }
 ```
 
@@ -33,7 +33,7 @@ dependencies {
 <repositories>
 	<repository>
 	   <id>jitpack.io</id>
-		 <url>https://jitpack.io</url>
+	   <url>https://jitpack.io</url>
 	</repository>
 </repositories>
 ```
@@ -42,7 +42,7 @@ dependencies {
 <dependency>
     <groupId>com.github.BlackBoxVision</groupId>
 	<artifactId>datetimepicker-edittext</artifactId>
-	<version>v0.0.2</version>
+	<version>v0.1.0</version>
 </dependency>
 ```
 
@@ -55,7 +55,7 @@ dependencies {
 
 - Add the dependency:
 ```sbt
-  libraryDependencies += "com.github.BlackBoxVision" % "datetimepicker-edittext" % "v0.0.2"
+  libraryDependencies += "com.github.BlackBoxVision" % "datetimepicker-edittext" % "v0.1.0"
 ```
 
 ##Sample Usage
@@ -66,6 +66,7 @@ In your activity layout xml:
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -101,10 +102,10 @@ In your activity layout xml:
             android:id="@+id/datePickerInputEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/select_date"/>
+            android:hint="@string/select_date"
+            app:dateFormat="yyyy/MM/dd"/>
 
     </android.support.design.widget.TextInputLayout>
-
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/timeTextInputLayout"
@@ -115,7 +116,8 @@ In your activity layout xml:
             android:id="@+id/timePickerInputEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/select_date"/>
+            android:hint="@string/select_time"
+            app:timeFormat="HH:mm"/>
 
     </android.support.design.widget.TextInputLayout>
 
@@ -154,4 +156,4 @@ public final class MainActivity extends AppCompatActivity {
 ```
 ##License
 
-Distributed under the MIT license. See LICENSE for more information.
+Distributed under the MIT license. See [LICENSE](https://github.com/BlackBoxVision/datetimepicker-edittext/blob/master/LICENSE.txt) for more information.
