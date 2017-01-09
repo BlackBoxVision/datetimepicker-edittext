@@ -14,6 +14,7 @@ import static android.app.TimePickerDialog.OnTimeSetListener;
 public final class TimePickerFragment extends DialogFragment {
     private OnTimeSetListener onTimeSetListener;
     private Boolean is24HourView;
+    private Integer themeId;
     private Calendar time;
 
     @NonNull
@@ -31,11 +32,17 @@ public final class TimePickerFragment extends DialogFragment {
             minute = c.get(Calendar.MINUTE);
         }
 
-        if (null == is24HourView) {
-            is24HourView = true;
+        is24HourView = null == is24HourView;
+
+        if (null != themeId && themeId != 0) {
+            return new TimePickerDialog(getActivity(), themeId, onTimeSetListener, hourOfDay, minute, is24HourView);
         }
 
         return new TimePickerDialog(getActivity(), onTimeSetListener, hourOfDay, minute, is24HourView);
+    }
+
+    public OnTimeSetListener getOnTimeSetListener() {
+        return onTimeSetListener;
     }
 
     public TimePickerFragment setOnTimeSetListener(@NonNull OnTimeSetListener onTimeSetListener) {
@@ -43,13 +50,30 @@ public final class TimePickerFragment extends DialogFragment {
         return this;
     }
 
+    public Boolean getIs24HourView() {
+        return is24HourView;
+    }
+
     public TimePickerFragment setIs24HourView(boolean is24HourView) {
         this.is24HourView = is24HourView;
         return this;
     }
 
+    public Calendar getTime() {
+        return time;
+    }
+
     public TimePickerFragment setTime(@NonNull Calendar time) {
         this.time = time;
+        return this;
+    }
+
+    public Integer getThemeId() {
+        return themeId;
+    }
+
+    public TimePickerFragment setThemeId(Integer themeId) {
+        this.themeId = themeId;
         return this;
     }
 }

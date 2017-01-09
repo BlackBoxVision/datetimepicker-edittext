@@ -27,6 +27,7 @@ public final class DatePickerEditText extends EditText implements OnFocusChangeL
     private OnFocusChangeListener onFocusChangedListener;
     private FragmentManager manager;
     private String dateFormat;
+    private Integer themeId;
     private Calendar date;
 
     public DatePickerEditText(Context context) {
@@ -52,9 +53,10 @@ public final class DatePickerEditText extends EditText implements OnFocusChangeL
 
     private void handleAttributes(@NonNull AttributeSet attributeSet) {
         try {
-            final TypedArray array = getContext().obtainStyledAttributes(attributeSet, R.styleable.DatePickerEditText);
+            final TypedArray array = getContext().obtainStyledAttributes(attributeSet, R.styleable.DateTimePickerEditText);
 
-            dateFormat = array.getString(R.styleable.DatePickerEditText_dateFormat);
+            dateFormat = array.getString(R.styleable.DateTimePickerEditText_dateFormat);
+            themeId = array.getResourceId(R.styleable.DateTimePickerEditText_theme, 0);
 
             array.recycle();
         } catch (Exception ex) {
@@ -68,14 +70,11 @@ public final class DatePickerEditText extends EditText implements OnFocusChangeL
         imm.hideSoftInputFromWindow(getWindowToken(), InputMethodManager.HIDE_IMPLICIT_ONLY);
 
         if (isFocused) {
-            final DatePickerFragment datePickerFragment = new DatePickerFragment();
-
-            if (null != date) {
-                datePickerFragment.setDate(date);
-            }
-
-            datePickerFragment.setOnDateSetListener(this);
-            datePickerFragment.show(manager, TAG);
+            new DatePickerFragment()
+                    .setDate(date)
+                    .setThemeId(themeId)
+                    .setOnDateSetListener(this)
+                    .show(manager, TAG);
         }
 
         if (null != onFocusChangedListener) {
@@ -128,6 +127,15 @@ public final class DatePickerEditText extends EditText implements OnFocusChangeL
 
     public DatePickerEditText setDateFormat(String dateFormat) {
         this.dateFormat = dateFormat;
+        return this;
+    }
+
+    public Integer getThemeId() {
+        return themeId;
+    }
+
+    public DatePickerEditText setThemeId(Integer themeId) {
+        this.themeId = themeId;
         return this;
     }
 }

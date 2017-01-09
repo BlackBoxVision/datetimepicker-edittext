@@ -12,6 +12,7 @@ import static android.app.DatePickerDialog.*;
 
 public final class DatePickerFragment extends DialogFragment {
     private OnDateSetListener onDateSetListener;
+    private Integer themeId;
     private Calendar date;
 
     @NonNull
@@ -31,7 +32,15 @@ public final class DatePickerFragment extends DialogFragment {
             day = c.get(Calendar.DAY_OF_MONTH);
         }
 
+        if (null != themeId && themeId != 0) {
+            return new DatePickerDialog(getActivity(), themeId, onDateSetListener, year, month, day);
+        }
+
         return new DatePickerDialog(getActivity(), onDateSetListener, year, month, day);
+    }
+
+    public OnDateSetListener getOnDateSetListener() {
+        return onDateSetListener;
     }
 
     public DatePickerFragment setOnDateSetListener(@NonNull OnDateSetListener onDateSetListener) {
@@ -39,8 +48,21 @@ public final class DatePickerFragment extends DialogFragment {
         return this;
     }
 
+    public Calendar getDate() {
+        return date;
+    }
+
     public DatePickerFragment setDate(@NonNull Calendar date) {
         this.date = date;
+        return this;
+    }
+
+    public Integer getThemeId() {
+        return themeId;
+    }
+
+    public DatePickerFragment setThemeId(Integer themeId) {
+        this.themeId = themeId;
         return this;
     }
 }

@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="DatePickerEditText">
+    <declare-styleable name="DateTimePickerEditText">
         <attr name="dateFormat" format="string"/>
-    </declare-styleable>
-    <declare-styleable name="TimePickerEditText">
         <attr name="timeFormat" format="string"/>
         <attr name="is24HourView" format="boolean"/>
+        <attr name="theme" format="reference"/>
     </declare-styleable>
 </resources>

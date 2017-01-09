@@ -28,6 +28,7 @@ public final class TimePickerEditText extends EditText implements OnFocusChangeL
     private FragmentManager manager;
     private boolean is24HourView;
     private String timeFormat;
+    private Integer themeId;
     private Calendar time;
 
     public TimePickerEditText(Context context) {
@@ -53,10 +54,11 @@ public final class TimePickerEditText extends EditText implements OnFocusChangeL
 
     private void handleAttributes(@NonNull AttributeSet attributeSet) {
         try {
-            final TypedArray array = getContext().obtainStyledAttributes(attributeSet, R.styleable.TimePickerEditText);
+            final TypedArray array = getContext().obtainStyledAttributes(attributeSet, R.styleable.DateTimePickerEditText);
 
-            timeFormat = array.getString(R.styleable.TimePickerEditText_timeFormat);
-            is24HourView = array.getBoolean(R.styleable.TimePickerEditText_is24HourView, false);
+            timeFormat = array.getString(R.styleable.DateTimePickerEditText_timeFormat);
+            is24HourView = array.getBoolean(R.styleable.DateTimePickerEditText_is24HourView, false);
+            themeId = array.getResourceId(R.styleable.DateTimePickerEditText_theme, 0);
 
             array.recycle();
         } catch (Exception ex) {
@@ -70,15 +72,11 @@ public final class TimePickerEditText extends EditText implements OnFocusChangeL
         imm.hideSoftInputFromWindow(getWindowToken(), 0);
 
         if (isFocused) {
-            final TimePickerFragment timePickerFragment = new TimePickerFragment();
-
-            if (null != time) {
-                timePickerFragment.setTime(time);
-            }
-
-            timePickerFragment.setOnTimeSetListener(this);
-            timePickerFragment.setIs24HourView(is24HourView);
-            timePickerFragment.show(manager, TAG);
+            new TimePickerFragment()
+                    .setTime(time)
+                    .setOnTimeSetListener(this)
+                    .setIs24HourView(is24HourView)
+                    .show(manager, TAG);
         }
 
         if (null != onFocusChangedListener) {
@@ -139,6 +137,15 @@ public final class TimePickerEditText extends EditText implements OnFocusChangeL
 
     public TimePickerEditText setIs24HourView(boolean is24HourView) {
         this.is24HourView = is24HourView;
+        return this;
+    }
+
+    public Integer getThemeId() {
+        return themeId;
+    }
+
+    public TimePickerEditText setThemeId(Integer themeId) {
+        this.themeId = themeId;
         return this;
     }
 }
