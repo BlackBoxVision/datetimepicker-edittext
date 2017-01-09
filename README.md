@@ -1,4 +1,4 @@
-#DateTimePicker EditText [![](https://jitpack.io/v/BlackBoxVision/datetimepicker-edittext.svg)](https://jitpack.io/#BlackBoxVision/datetimepicker-edittext)
+#DateTimePicker EditText [![License: MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg)](https://opensource.org/licenses/MIT) [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-DateTimePickerEditText-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/5029) [![](https://jitpack.io/v/BlackBoxVision/datetimepicker-edittext.svg)](https://jitpack.io/#BlackBoxVision/datetimepicker-edittext)
 :calendar: A set of EditTexts with built-in support for Date and TimePicker's using Fragments
 
 ##Installation
@@ -22,7 +22,7 @@ allprojects {
 - Add the dependency:
 ```gradle
 dependencies {
-	 compile 'com.github.BlackBoxVision:datetimepicker-edittext:v0.1.0'
+	 compile 'com.github.BlackBoxVision:datetimepicker-edittext:v0.2.0'
 }
 ```
 
@@ -42,7 +42,7 @@ dependencies {
 <dependency>
     <groupId>com.github.BlackBoxVision</groupId>
 	<artifactId>datetimepicker-edittext</artifactId>
-	<version>v0.1.0</version>
+	<version>v0.2.0</version>
 </dependency>
 ```
 
@@ -55,7 +55,7 @@ dependencies {
 
 - Add the dependency:
 ```sbt
-  libraryDependencies += "com.github.BlackBoxVision" % "datetimepicker-edittext" % "v0.1.0"
+  libraryDependencies += "com.github.BlackBoxVision" % "datetimepicker-edittext" % "v0.2.0"
 ```
 
 ##Sample Usage
@@ -117,7 +117,8 @@ In your activity layout xml:
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/select_time"
-            app:timeFormat="HH:mm"/>
+            app:timeFormat="HH:mm"
+	    	app:is24HourView="true"/>
 
     </android.support.design.widget.TextInputLayout>
 
@@ -154,6 +155,7 @@ public final class MainActivity extends AppCompatActivity {
     }
 }
 ```
+
 ##License
 
-Distributed under the MIT license. See [LICENSE](https://github.com/BlackBoxVision/datetimepicker-edittext/blob/master/LICENSE.txt) for more information.
+Distributed under the **MIT license**. See [LICENSE](https://github.com/BlackBoxVision/datetimepicker-edittext/blob/master/LICENSE.txt) for more information.
