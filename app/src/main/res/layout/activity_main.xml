@@ -38,6 +38,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/select_date"
+            app:minDate="01/01/1981"
+            app:maxDate="01/01/2050"
             app:dateFormat="yyyy/MM/dd"/>
 
     </android.support.design.widget.TextInputLayout>
