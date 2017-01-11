@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
+import android.text.InputType;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -50,6 +51,7 @@ public final class TimePickerEditText extends EditText implements OnFocusChangeL
 
     private void init() {
         setOnFocusChangeListener(this);
+        setInputType(InputType.TYPE_NULL);
     }
 
     private void handleAttributes(@NonNull AttributeSet attributeSet) {

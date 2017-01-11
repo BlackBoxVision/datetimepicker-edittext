@@ -3,6 +3,8 @@
     <declare-styleable name="DateTimePickerEditText">
         <attr name="dateFormat" format="string"/>
         <attr name="timeFormat" format="string"/>
+        <attr name="minDate" format="string"/>
+        <attr name="maxDate" format="string"/>
         <attr name="is24HourView" format="boolean"/>
         <attr name="theme" format="reference"/>
     </declare-styleable>

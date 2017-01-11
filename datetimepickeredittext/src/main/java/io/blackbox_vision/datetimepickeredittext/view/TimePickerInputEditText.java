@@ -5,6 +5,7 @@ import android.content.res.TypedArray;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.FragmentManager;
+import android.text.InputType;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -50,6 +51,7 @@ public final class TimePickerInputEditText extends TextInputEditText implements 
 
     private void init() {
         setOnFocusChangeListener(this);
+        setInputType(InputType.TYPE_NULL);
     }
 
     private void handleAttributes(@NonNull AttributeSet attributeSet) {
@@ -69,7 +71,7 @@ public final class TimePickerInputEditText extends TextInputEditText implements 
     @Override
     public void onFocusChange(View view, boolean isFocused) {
         final InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(getWindowToken(), InputMethodManager.HIDE_IMPLICIT_ONLY);
+        imm.hideSoftInputFromWindow(getWindowToken(), 0);
 
         if (isFocused) {
             new TimePickerFragment()

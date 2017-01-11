@@ -5,6 +5,7 @@ import android.content.res.TypedArray;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.FragmentManager;
+import android.text.InputType;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -24,10 +25,20 @@ import static android.app.DatePickerDialog.OnDateSetListener;
 public final class DatePickerInputEditText extends TextInputEditText implements OnFocusChangeListener, OnDateSetListener {
     private static final String TAG = DatePickerInputEditText.class.getSimpleName();
 
+    private static final String DEFAULT_TEMPLATE = "dd/MM/yyyy";
+    private static final String DEFAULT_MIN_DATE = "01/01/1980";
+    private static final String DEFAULT_MAX_DATE = "01/01/2100";
+
     private OnFocusChangeListener onFocusChangedListener;
+
     private FragmentManager manager;
-    private String dateFormat;
+
     private Integer themeId;
+
+    private String dateFormat;
+    private String minDate;
+    private String maxDate;
+
     private Calendar date;
 
     public DatePickerInputEditText(Context context) {
@@ -49,14 +60,18 @@ public final class DatePickerInputEditText extends TextInputEditText implements 
 
     private void init() {
         setOnFocusChangeListener(this);
+        setInputType(InputType.TYPE_NULL);
     }
 
     private void handleAttributes(@NonNull AttributeSet attributeSet) {
         try {
             final TypedArray array = getContext().obtainStyledAttributes(attributeSet, R.styleable.DateTimePickerEditText);
 
-            dateFormat = array.getString(R.styleable.DateTimePickerEditText_dateFormat);
             themeId = array.getResourceId(R.styleable.DateTimePickerEditText_theme, 0);
+
+            dateFormat = array.getString(R.styleable.DateTimePickerEditText_dateFormat);
+            minDate = array.getString(R.styleable.DateTimePickerEditText_minDate);
+            maxDate = array.getString(R.styleable.DateTimePickerEditText_maxDate);
 
             array.recycle();
         } catch (Exception ex) {
@@ -67,14 +82,22 @@ public final class DatePickerInputEditText extends TextInputEditText implements 
     @Override
     public void onFocusChange(View view, boolean isFocused) {
         final InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(getWindowToken(), InputMethodManager.HIDE_IMPLICIT_ONLY);
+        imm.hideSoftInputFromWindow(getWindowToken(), 0);
 
         if (isFocused) {
-            new DatePickerFragment()
-                    .setDate(date)
-                    .setThemeId(themeId)
-                    .setOnDateSetListener(this)
-                    .show(manager, TAG);
+            final long min = DateUtils.parse(null != minDate? minDate : DEFAULT_MIN_DATE, null != minDate? dateFormat : DEFAULT_TEMPLATE).getTime();
+            final long max = DateUtils.parse(null != maxDate? maxDate : DEFAULT_MAX_DATE, null != maxDate? dateFormat : DEFAULT_TEMPLATE).getTime();
+
+            final DatePickerFragment datePickerFragment = new DatePickerFragment();
+
+            datePickerFragment.setDate(date);
+            datePickerFragment.setThemeId(themeId);
+            datePickerFragment.setOnDateSetListener(this);
+
+            //datePickerFragment.getDatePicker().setMinDate(min);
+            //datePickerFragment.getDatePicker().setMaxDate(max);
+
+            datePickerFragment.show(manager, TAG);
         }
 
         if (null != onFocusChangedListener) {
@@ -136,6 +159,24 @@ public final class DatePickerInputEditText extends TextInputEditText implements 
 
     public DatePickerInputEditText setThemeId(Integer themeId) {
         this.themeId = themeId;
+        return this;
+    }
+
+    public String getMaxDate() {
+        return maxDate;
+    }
+
+    public DatePickerInputEditText setMaxDate(String maxDate) {
+        this.maxDate = maxDate;
+        return this;
+    }
+
+    public String getMinDate() {
+        return minDate;
+    }
+
+    public DatePickerInputEditText setMinDate(String minDate) {
+        this.minDate = minDate;
         return this;
     }
 }

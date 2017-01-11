@@ -5,6 +5,8 @@ import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
+import android.widget.DatePicker;
+
 import java.util.Calendar;
 
 import static android.app.DatePickerDialog.*;
@@ -12,6 +14,7 @@ import static android.app.DatePickerDialog.*;
 
 public final class DatePickerFragment extends DialogFragment {
     private OnDateSetListener onDateSetListener;
+    private DatePickerDialog datePickerDialog;
     private Integer themeId;
     private Calendar date;
 
@@ -33,10 +36,12 @@ public final class DatePickerFragment extends DialogFragment {
         }
 
         if (null != themeId && themeId != 0) {
-            return new DatePickerDialog(getActivity(), themeId, onDateSetListener, year, month, day);
+            datePickerDialog = new DatePickerDialog(getActivity(), themeId, onDateSetListener, year, month, day);
+        } else {
+            datePickerDialog = new DatePickerDialog(getActivity(), onDateSetListener, year, month, day);
         }
 
-        return new DatePickerDialog(getActivity(), onDateSetListener, year, month, day);
+        return datePickerDialog;
     }
 
     public OnDateSetListener getOnDateSetListener() {
@@ -64,5 +69,9 @@ public final class DatePickerFragment extends DialogFragment {
     public DatePickerFragment setThemeId(Integer themeId) {
         this.themeId = themeId;
         return this;
+    }
+
+    public DatePicker getDatePicker() {
+        return datePickerDialog.getDatePicker();
     }
 }
