@@ -25,10 +25,6 @@ import static android.app.DatePickerDialog.OnDateSetListener;
 public final class DatePickerEditText extends EditText implements OnFocusChangeListener, OnDateSetListener {
     private static final String TAG = DatePickerEditText.class.getSimpleName();
 
-    private static final String DEFAULT_TEMPLATE = "dd/MM/yyyy";
-    private static final String DEFAULT_MIN_DATE = "01/01/1980";
-    private static final String DEFAULT_MAX_DATE = "01/01/2100";
-
     private OnFocusChangeListener onFocusChangedListener;
 
     private FragmentManager manager;
@@ -85,20 +81,12 @@ public final class DatePickerEditText extends EditText implements OnFocusChangeL
         imm.hideSoftInputFromWindow(getWindowToken(), 0);
 
         if (isFocused) {
-            final String minDateStr = null != minDate? minDate : DEFAULT_MIN_DATE;
-            final String maxDateStr = null != maxDate? maxDate : DEFAULT_MAX_DATE;
-
-            final long min = DateUtils.parse(minDateStr, null != minDate? dateFormat : DEFAULT_TEMPLATE).getTime();
-            final long max = DateUtils.parse(maxDateStr, null != maxDate? dateFormat : DEFAULT_TEMPLATE).getTime();
-
-            final DatePickerFragment datePickerFragment = new DatePickerFragment();
-
-            datePickerFragment.setDate(date);
-            datePickerFragment.setThemeId(themeId);
-            datePickerFragment.setOnDateSetListener(this);
-
-            datePickerFragment.setMinDate(min);
-            datePickerFragment.setMaxDate(max);
+            final DatePickerFragment datePickerFragment = new DatePickerFragment()
+                    .setDate(date)
+                    .setThemeId(themeId)
+                    .setOnDateSetListener(this)
+                    .setMinDate(minDate)
+                    .setMaxDate(maxDate);
 
             datePickerFragment.show(manager, TAG);
         }

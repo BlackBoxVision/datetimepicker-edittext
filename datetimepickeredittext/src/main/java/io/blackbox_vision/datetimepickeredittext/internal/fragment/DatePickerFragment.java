@@ -8,15 +8,21 @@ import android.support.v4.app.DialogFragment;
 
 import java.util.Calendar;
 
+import io.blackbox_vision.datetimepickeredittext.internal.utils.DateUtils;
+
 import static android.app.DatePickerDialog.*;
 
 
 public final class DatePickerFragment extends DialogFragment {
+    private static final String DEFAULT_TEMPLATE = "dd/MM/yyyy";
+    private static final String DEFAULT_MIN_DATE = "01/01/1980";
+    private static final String DEFAULT_MAX_DATE = "01/01/2100";
+
     private OnDateSetListener onDateSetListener;
     private Calendar date;
 
-    private Long minDate;
-    private Long maxDate;
+    private String minDate;
+    private String maxDate;
 
     private Integer themeId;
 
@@ -45,8 +51,14 @@ public final class DatePickerFragment extends DialogFragment {
             datePickerDialog = new DatePickerDialog(getActivity(), onDateSetListener, year, month, day);
         }
 
-        datePickerDialog.getDatePicker().setMinDate(minDate);
-        datePickerDialog.getDatePicker().setMaxDate(maxDate);
+        final String minDateStr = null != minDate? minDate : DEFAULT_MIN_DATE;
+        final String maxDateStr = null != maxDate? maxDate : DEFAULT_MAX_DATE;
+
+        final long min = DateUtils.parse(minDateStr, DEFAULT_TEMPLATE).getTime();
+        final long max = DateUtils.parse(maxDateStr, DEFAULT_TEMPLATE).getTime();
+
+        datePickerDialog.getDatePicker().setMinDate(min);
+        datePickerDialog.getDatePicker().setMaxDate(max);
 
         return datePickerDialog;
     }
@@ -78,20 +90,20 @@ public final class DatePickerFragment extends DialogFragment {
         return this;
     }
 
-    public Long getMaxDate() {
+    public String getMaxDate() {
         return maxDate;
     }
 
-    public DatePickerFragment setMaxDate(Long maxDate) {
+    public DatePickerFragment setMaxDate(String maxDate) {
         this.maxDate = maxDate;
         return this;
     }
 
-    public Long getMinDate() {
+    public String getMinDate() {
         return minDate;
     }
 
-    public DatePickerFragment setMinDate(Long minDate) {
+    public DatePickerFragment setMinDate(String minDate) {
         this.minDate = minDate;
         return this;
     }
