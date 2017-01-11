@@ -32,7 +32,9 @@ public final class TimePickerFragment extends DialogFragment {
             minute = c.get(Calendar.MINUTE);
         }
 
-        is24HourView = null == is24HourView;
+        if (null == is24HourView) {
+            is24HourView = true;
+        }
 
         if (null != themeId && themeId != 0) {
             return new TimePickerDialog(getActivity(), themeId, onTimeSetListener, hourOfDay, minute, is24HourView);

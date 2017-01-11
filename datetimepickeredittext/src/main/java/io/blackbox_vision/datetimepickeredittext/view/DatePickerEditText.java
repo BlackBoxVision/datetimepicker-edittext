@@ -85,8 +85,11 @@ public final class DatePickerEditText extends EditText implements OnFocusChangeL
         imm.hideSoftInputFromWindow(getWindowToken(), 0);
 
         if (isFocused) {
-            final long min = DateUtils.parse(null != minDate? minDate : DEFAULT_MIN_DATE, null != minDate? dateFormat : DEFAULT_TEMPLATE).getTime();
-            final long max = DateUtils.parse(null != maxDate? maxDate : DEFAULT_MAX_DATE, null != maxDate? dateFormat : DEFAULT_TEMPLATE).getTime();
+            final String minDateStr = null != minDate? minDate : DEFAULT_MIN_DATE;
+            final String maxDateStr = null != maxDate? maxDate : DEFAULT_MAX_DATE;
+
+            final long min = DateUtils.parse(minDateStr, null != minDate? dateFormat : DEFAULT_TEMPLATE).getTime();
+            final long max = DateUtils.parse(maxDateStr, null != maxDate? dateFormat : DEFAULT_TEMPLATE).getTime();
 
             final DatePickerFragment datePickerFragment = new DatePickerFragment();
 
@@ -94,8 +97,8 @@ public final class DatePickerEditText extends EditText implements OnFocusChangeL
             datePickerFragment.setThemeId(themeId);
             datePickerFragment.setOnDateSetListener(this);
 
-            //datePickerFragment.getDatePicker().setMinDate(min);
-            //datePickerFragment.getDatePicker().setMaxDate(max);
+            datePickerFragment.setMinDate(min);
+            datePickerFragment.setMaxDate(max);
 
             datePickerFragment.show(manager, TAG);
         }
