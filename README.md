@@ -22,7 +22,7 @@ allprojects {
 - Add the dependency:
 ```gradle
 dependencies {
-	 compile 'com.github.BlackBoxVision:datetimepicker-edittext:v0.2.0'
+	 compile 'com.github.BlackBoxVision:datetimepicker-edittext:v0.3.0'
 }
 ```
 
@@ -42,7 +42,7 @@ dependencies {
 <dependency>
     <groupId>com.github.BlackBoxVision</groupId>
 	<artifactId>datetimepicker-edittext</artifactId>
-	<version>v0.2.0</version>
+	<version>v0.3.0</version>
 </dependency>
 ```
 
@@ -55,7 +55,7 @@ dependencies {
 
 - Add the dependency:
 ```sbt
-  libraryDependencies += "com.github.BlackBoxVision" % "datetimepicker-edittext" % "v0.2.0"
+  libraryDependencies += "com.github.BlackBoxVision" % "datetimepicker-edittext" % "v0.3.0"
 ```
 
 ##Sample Usage
@@ -103,6 +103,8 @@ In your activity layout xml:
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/select_date"
+            app:minDate="01/01/1981"
+            app:maxDate="01/01/2050"
             app:dateFormat="yyyy/MM/dd"/>
 
     </android.support.design.widget.TextInputLayout>
@@ -118,12 +120,19 @@ In your activity layout xml:
             android:layout_height="wrap_content"
             android:hint="@string/select_time"
             app:timeFormat="HH:mm"
-	    	app:is24HourView="true"/>
+            app:is24HourView="true"/>
 
     </android.support.design.widget.TextInputLayout>
-
 </LinearLayout>
 ```
+
+The available tags are the following ones: 
+- **dateTimePicker:theme**: Reference to a custom theme related to the DatePicker or TimePicker dialog style
+- **dateTimePicker:minDate**: String, it must be a string date in the format 'dd/MM/yyyy'
+- **dateTimePicker:maxDate**: remains the same as minDate
+- **dateTimePicker:dateFormat**: String, it represents the format that the date will be shown in the EditText, the default is 'dd/MM/yyyy'
+- **dateTimePicker:timeFormat**: String, it represents the format that the time will be shown in the EditText, the default is 'HH:mm'
+- **dateTimePicker:is24HourView**: Boolean, it tells the TimePicker how to show it
 
 And in your Activity class
 
