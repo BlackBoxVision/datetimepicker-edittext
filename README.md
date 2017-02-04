@@ -1,5 +1,7 @@
-#DateTimePicker EditText [![License: MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg)](https://opensource.org/licenses/MIT) [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-DateTimePickerEditText-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/5029) [![](https://jitpack.io/v/BlackBoxVision/datetimepicker-edittext.svg)](https://jitpack.io/#BlackBoxVision/datetimepicker-edittext)
-:calendar: A set of EditTexts with built-in support for Date and TimePicker's using Fragments
+#DateTimePicker EditText 
+> :calendar: A set of EditTexts with built-in support for Date and TimePicker's using Fragments
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg)](https://opensource.org/licenses/MIT) [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-DateTimePickerEditText-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/5029) [![](https://jitpack.io/v/BlackBoxVision/datetimepicker-edittext.svg)](https://jitpack.io/#BlackBoxVision/datetimepicker-edittext)
 
 ##Installation
 
