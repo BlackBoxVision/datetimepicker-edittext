@@ -1,9 +1,9 @@
-#DateTimePicker EditText 
+# DateTimePicker EditText 
 > :calendar: A set of EditTexts with built-in support for Date and TimePicker's using Fragments
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg)](https://opensource.org/licenses/MIT) [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-DateTimePickerEditText-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/5029) [![](https://jitpack.io/v/BlackBoxVision/datetimepicker-edittext.svg)](https://jitpack.io/#BlackBoxVision/datetimepicker-edittext)
 
-##Installation
+## Installation
 
 Actually I don't have this library in **JCenter/Maven Central**, so if you want to use, follow the instructions. 
 
@@ -60,7 +60,7 @@ dependencies {
   libraryDependencies += "com.github.BlackBoxVision" % "datetimepicker-edittext" % "v0.3.0"
 ```
 
-##Sample Usage
+## Sample Usage
 
 In your activity layout xml:
 
@@ -167,6 +167,6 @@ public final class MainActivity extends AppCompatActivity {
 }
 ```
 
-##License
+## License
 
 Distributed under the **MIT license**. See [LICENSE](https://github.com/BlackBoxVision/datetimepicker-edittext/blob/master/LICENSE.txt) for more information.
