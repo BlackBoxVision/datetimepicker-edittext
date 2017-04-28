@@ -6,7 +6,6 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.AppCompatEditText;
 import android.text.InputType;
-import android.text.format.DateFormat;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
