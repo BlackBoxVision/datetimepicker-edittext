@@ -54,7 +54,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/select_time"
-            app:timeFormat="HH:mm"
+            app:timeFormat="kk:mm"
             app:is24HourView="true"/>
 
     </android.support.design.widget.TextInputLayout>

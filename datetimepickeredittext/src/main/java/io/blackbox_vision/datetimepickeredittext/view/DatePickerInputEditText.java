@@ -19,10 +19,11 @@ import io.blackbox_vision.datetimepickeredittext.internal.fragment.DatePickerFra
 import io.blackbox_vision.datetimepickeredittext.internal.utils.DateUtils;
 
 import static android.view.View.OnFocusChangeListener;
+import static android.view.View.OnClickListener;
 import static android.app.DatePickerDialog.OnDateSetListener;
 
 
-public final class DatePickerInputEditText extends TextInputEditText implements OnFocusChangeListener, OnDateSetListener {
+public final class DatePickerInputEditText extends TextInputEditText implements OnFocusChangeListener, OnClickListener, OnDateSetListener {
     private static final String TAG = DatePickerInputEditText.class.getSimpleName();
 
     private OnFocusChangeListener onFocusChangedListener;
@@ -34,6 +35,8 @@ public final class DatePickerInputEditText extends TextInputEditText implements 
     private String dateFormat;
     private String minDate;
     private String maxDate;
+
+    private java.text.DateFormat textDateFormat;
 
     private Calendar date;
 
@@ -56,6 +59,7 @@ public final class DatePickerInputEditText extends TextInputEditText implements 
 
     private void init() {
         setOnFocusChangeListener(this);
+        setOnClickListener(this);
         setInputType(InputType.TYPE_NULL);
     }
 
@@ -81,19 +85,28 @@ public final class DatePickerInputEditText extends TextInputEditText implements 
         imm.hideSoftInputFromWindow(getWindowToken(), 0);
 
         if (isFocused) {
-            final DatePickerFragment datePickerFragment = new DatePickerFragment()
-                    .setDate(date)
-                    .setThemeId(themeId)
-                    .setOnDateSetListener(this)
-                    .setMinDate(minDate)
-                    .setMaxDate(maxDate);
-
-            datePickerFragment.show(manager, TAG);
+            showDatePicker();
         }
 
         if (null != onFocusChangedListener) {
             onFocusChangedListener.onFocusChange(view, isFocused);
         }
+    }
+
+    @Override
+    public void onClick(View v) {
+        showDatePicker();
+    }
+
+    private void showDatePicker() {
+        final DatePickerFragment datePickerFragment = new DatePickerFragment()
+                .setDate(date)
+                .setThemeId(themeId)
+                .setOnDateSetListener(this)
+                .setMinDate(minDate)
+                .setMaxDate(maxDate);
+
+        datePickerFragment.show(manager, TAG);
     }
 
     @Override
@@ -104,7 +117,11 @@ public final class DatePickerInputEditText extends TextInputEditText implements 
         calendar.set(Calendar.MONTH, monthOfYear);
         calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
 
-        setText(DateUtils.toDate(calendar.getTime(), dateFormat));
+        if (textDateFormat != null) {
+            setText(textDateFormat.format(calendar.getTime()));
+        } else {
+            setText(DateUtils.toDate(calendar.getTime(), dateFormat));
+        }
         date = calendar;
     }
 
@@ -141,6 +158,11 @@ public final class DatePickerInputEditText extends TextInputEditText implements 
 
     public DatePickerInputEditText setDateFormat(String dateFormat) {
         this.dateFormat = dateFormat;
+        return this;
+    }
+
+    public DatePickerInputEditText setDateFormat(java.text.DateFormat format) {
+        this.textDateFormat = format;
         return this;
     }
 

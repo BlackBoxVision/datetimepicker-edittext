@@ -34,5 +34,12 @@ public final class MainActivity extends AppCompatActivity {
 
         datePickerInputEditText.setManager(getSupportFragmentManager());
         timePickerInputEditText.setManager(getSupportFragmentManager());
+
+        // Set the date formatter with the given formatting style from device setting.
+        datePickerEditText.setDateFormat(android.text.format.DateFormat.getLongDateFormat(getApplicationContext()));
+        timePickerEditText.setTimeFormat(android.text.format.DateFormat.getTimeFormat(getApplicationContext()));
+
+        datePickerInputEditText.setDateFormat(android.text.format.DateFormat.getMediumDateFormat(getApplicationContext()));
+        timePickerInputEditText.setTimeFormat(android.text.format.DateFormat.getTimeFormat(getApplicationContext()));
     }
 }
