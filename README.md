@@ -12,19 +12,19 @@ Actually I don't have this library in **JCenter/Maven Central**, so if you want 
 - Add it in your root build.gradle at the end of repositories:
 ```gradle
 allprojects {
-	repositories {
-		...
-		maven { 
-			url "https://jitpack.io" 
-		}
-	}
+    repositories {
+        ...
+        maven { 
+	    url "https://jitpack.io" 
+        }
+    }
 }
 ```
 
 - Add the dependency:
 ```gradle
 dependencies {
-	 compile 'com.github.BlackBoxVision:datetimepicker-edittext:v0.3.0'
+    compile 'com.github.BlackBoxVision:datetimepicker-edittext:v0.3.1'
 }
 ```
 
@@ -33,18 +33,18 @@ dependencies {
 - Add this line to repositories section in pom.xml:
 ```xml
 <repositories>
-	<repository>
-	   <id>jitpack.io</id>
-	   <url>https://jitpack.io</url>
-	</repository>
+    <repository>
+	<id>jitpack.io</id>
+	<url>https://jitpack.io</url>
+    </repository>
 </repositories>
 ```
 - Add the dependency:
 ```xml
 <dependency>
     <groupId>com.github.BlackBoxVision</groupId>
-	<artifactId>datetimepicker-edittext</artifactId>
-	<version>v0.3.0</version>
+    <artifactId>datetimepicker-edittext</artifactId>
+    <version>v0.3.1</version>
 </dependency>
 ```
 
@@ -57,7 +57,7 @@ dependencies {
 
 - Add the dependency:
 ```sbt
-  libraryDependencies += "com.github.BlackBoxVision" % "datetimepicker-edittext" % "v0.3.0"
+  libraryDependencies += "com.github.BlackBoxVision" % "datetimepicker-edittext" % "v0.3.1"
 ```
 
 ## Sample Usage
