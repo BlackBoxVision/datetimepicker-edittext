@@ -4,13 +4,14 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.widget.AppCompatEditText;
 import android.text.InputType;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.EditText;
 import android.widget.TimePicker;
 
+import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
@@ -19,15 +20,17 @@ import io.blackbox_vision.datetimepickeredittext.internal.fragment.TimePickerFra
 import io.blackbox_vision.datetimepickeredittext.internal.utils.DateUtils;
 
 import static android.view.View.OnFocusChangeListener;
+import static android.view.View.OnClickListener;
 import static android.app.TimePickerDialog.OnTimeSetListener;
 
 
-public final class TimePickerEditText extends EditText implements OnFocusChangeListener, OnTimeSetListener {
+public final class TimePickerEditText extends AppCompatEditText implements OnFocusChangeListener, OnClickListener, OnTimeSetListener {
     private static final String TAG = TimePickerEditText.class.getSimpleName();
 
     private OnFocusChangeListener onFocusChangedListener;
     private FragmentManager manager;
     private boolean is24HourView;
+    private DateFormat textDateFormat;
     private String timeFormat;
     private Integer themeId;
     private Calendar time;
@@ -51,6 +54,7 @@ public final class TimePickerEditText extends EditText implements OnFocusChangeL
 
     private void init() {
         setOnFocusChangeListener(this);
+        setOnClickListener(this);
         setInputType(InputType.TYPE_NULL);
     }
 
@@ -74,16 +78,25 @@ public final class TimePickerEditText extends EditText implements OnFocusChangeL
         imm.hideSoftInputFromWindow(getWindowToken(), 0);
 
         if (isFocused) {
-            new TimePickerFragment()
-                    .setTime(time)
-                    .setOnTimeSetListener(this)
-                    .setIs24HourView(is24HourView)
-                    .show(manager, TAG);
+            showTimePicker();
         }
 
         if (null != onFocusChangedListener) {
             onFocusChangedListener.onFocusChange(view, isFocused);
         }
+    }
+
+    @Override
+    public void onClick(View v) {
+        showTimePicker();
+    }
+
+    private void showTimePicker() {
+        new TimePickerFragment()
+                .setTime(time)
+                .setOnTimeSetListener(this)
+                .setIs24HourView(is24HourView)
+                .show(manager, TAG);
     }
 
     @Override
@@ -93,7 +106,11 @@ public final class TimePickerEditText extends EditText implements OnFocusChangeL
         calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
         calendar.set(Calendar.MINUTE, minute);
 
-        setText(DateUtils.toTime(calendar.getTime(), timeFormat));
+        if (textDateFormat != null) {
+            setText(textDateFormat.format(calendar.getTime()));
+        } else {
+            setText(DateUtils.toTime(calendar.getTime(), timeFormat));
+        }
         time = calendar;
     }
 
@@ -130,6 +147,11 @@ public final class TimePickerEditText extends EditText implements OnFocusChangeL
 
     public TimePickerEditText setTimeFormat(String timeFormat) {
         this.timeFormat = timeFormat;
+        return this;
+    }
+
+    public TimePickerEditText setTimeFormat(DateFormat format) {
+        this.textDateFormat = format;
         return this;
     }
 

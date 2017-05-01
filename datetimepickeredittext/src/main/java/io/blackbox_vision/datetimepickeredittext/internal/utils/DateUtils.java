@@ -3,6 +3,7 @@ package io.blackbox_vision.datetimepickeredittext.internal.utils;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.text.format.DateFormat;
 import android.util.Log;
 
 import java.text.ParseException;
@@ -15,19 +16,19 @@ public final class DateUtils {
     private static final String LOG_TAG = DateUtils.class.getSimpleName();
 
     private static final String DATE_TEMPLATE = "dd/MM/yyyy";
-    private static final String TIME_TEMPLATE = "HH:mm";
+    private static final String TIME_TEMPLATE = "kk:mm";
 
     private DateUtils() { }
 
-    private static String format(@NonNull final Date date, @NonNull final String template) {
-        return new SimpleDateFormat(template, Locale.getDefault()).format(date);
+    private static CharSequence format(@NonNull final Date date, @NonNull final String template) {
+        return DateFormat.format(template, date);
     }
 
-    public static String toDate(@NonNull final Date date, @Nullable final String template) {
+    public static CharSequence toDate(@NonNull final Date date, @Nullable final String template) {
         return format(date, null != template ? template : DATE_TEMPLATE);
     }
 
-    public static String toTime(@NonNull final Date date, @Nullable final String template) {
+    public static CharSequence toTime(@NonNull final Date date, @Nullable final String template) {
         return format(date, null != template ? template : TIME_TEMPLATE);
     }
 
