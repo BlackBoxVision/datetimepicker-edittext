@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.DatePicker;
 
+import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
@@ -36,7 +37,7 @@ public final class DatePickerEditText extends AppCompatEditText implements OnFoc
     private String minDate;
     private String maxDate;
 
-    private java.text.DateFormat textDateFormat;
+    private DateFormat textDateFormat;
 
     private Calendar date;
 
@@ -161,7 +162,7 @@ public final class DatePickerEditText extends AppCompatEditText implements OnFoc
         return this;
     }
 
-    public DatePickerEditText setDateFormat(java.text.DateFormat format) {
+    public DatePickerEditText setDateFormat(DateFormat format) {
         this.textDateFormat = format;
         return this;
     }

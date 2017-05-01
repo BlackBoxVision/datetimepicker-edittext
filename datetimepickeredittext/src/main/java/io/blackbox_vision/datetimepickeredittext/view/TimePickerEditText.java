@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.TimePicker;
 
+import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
@@ -29,7 +30,7 @@ public final class TimePickerEditText extends AppCompatEditText implements OnFoc
     private OnFocusChangeListener onFocusChangedListener;
     private FragmentManager manager;
     private boolean is24HourView;
-    private java.text.DateFormat textDateFormat;
+    private DateFormat textDateFormat;
     private String timeFormat;
     private Integer themeId;
     private Calendar time;
@@ -149,7 +150,7 @@ public final class TimePickerEditText extends AppCompatEditText implements OnFoc
         return this;
     }
 
-    public TimePickerEditText setTimeFormat(java.text.DateFormat format) {
+    public TimePickerEditText setTimeFormat(DateFormat format) {
         this.textDateFormat = format;
         return this;
     }
