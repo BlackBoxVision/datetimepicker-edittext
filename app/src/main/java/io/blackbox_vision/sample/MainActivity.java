@@ -2,12 +2,12 @@ package io.blackbox_vision.sample;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.format.DateFormat;
 
 import io.blackbox_vision.datetimepickeredittext.view.DatePickerEditText;
 import io.blackbox_vision.datetimepickeredittext.view.DatePickerInputEditText;
 import io.blackbox_vision.datetimepickeredittext.view.TimePickerEditText;
 import io.blackbox_vision.datetimepickeredittext.view.TimePickerInputEditText;
-
 
 @SuppressWarnings("all")
 public final class MainActivity extends AppCompatActivity {
@@ -36,10 +36,10 @@ public final class MainActivity extends AppCompatActivity {
         timePickerInputEditText.setManager(getSupportFragmentManager());
 
         // Set the date formatter with the given formatting style from device setting.
-        datePickerEditText.setDateFormat(android.text.format.DateFormat.getLongDateFormat(getApplicationContext()));
-        timePickerEditText.setTimeFormat(android.text.format.DateFormat.getTimeFormat(getApplicationContext()));
+        datePickerEditText.setDateFormat(DateFormat.getLongDateFormat(getApplicationContext()));
+        timePickerEditText.setTimeFormat(DateFormat.getTimeFormat(getApplicationContext()));
 
-        datePickerInputEditText.setDateFormat(android.text.format.DateFormat.getMediumDateFormat(getApplicationContext()));
-        timePickerInputEditText.setTimeFormat(android.text.format.DateFormat.getTimeFormat(getApplicationContext()));
+        datePickerInputEditText.setDateFormat(DateFormat.getMediumDateFormat(getApplicationContext()));
+        timePickerInputEditText.setTimeFormat(DateFormat.getTimeFormat(getApplicationContext()));
     }
 }

@@ -28,11 +28,18 @@ public final class TimePickerEditText extends AppCompatEditText implements OnFoc
     private static final String TAG = TimePickerEditText.class.getSimpleName();
 
     private OnFocusChangeListener onFocusChangedListener;
+
     private FragmentManager manager;
+
     private boolean is24HourView;
+
     private DateFormat textDateFormat;
+
     private String timeFormat;
+
+    private Integer focusCount;
     private Integer themeId;
+
     private Calendar time;
 
     public TimePickerEditText(Context context) {
@@ -56,6 +63,7 @@ public final class TimePickerEditText extends AppCompatEditText implements OnFoc
         setOnFocusChangeListener(this);
         setOnClickListener(this);
         setInputType(InputType.TYPE_NULL);
+        focusCount = 0;
     }
 
     private void handleAttributes(@NonNull AttributeSet attributeSet) {
@@ -76,8 +84,9 @@ public final class TimePickerEditText extends AppCompatEditText implements OnFoc
     public void onFocusChange(View view, boolean isFocused) {
         final InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(getWindowToken(), 0);
+        focusCount++;
 
-        if (isFocused) {
+        if (isFocused && focusCount == 1) {
             showTimePicker();
         }
 

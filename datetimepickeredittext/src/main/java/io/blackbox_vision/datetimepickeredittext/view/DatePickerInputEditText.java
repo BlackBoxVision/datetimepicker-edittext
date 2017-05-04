@@ -31,6 +31,7 @@ public final class DatePickerInputEditText extends TextInputEditText implements 
 
     private FragmentManager manager;
 
+    private Integer focusCount;
     private Integer themeId;
 
     private String dateFormat;
@@ -62,6 +63,7 @@ public final class DatePickerInputEditText extends TextInputEditText implements 
         setOnFocusChangeListener(this);
         setOnClickListener(this);
         setInputType(InputType.TYPE_NULL);
+        focusCount = 0;
     }
 
     private void handleAttributes(@NonNull AttributeSet attributeSet) {
@@ -84,8 +86,9 @@ public final class DatePickerInputEditText extends TextInputEditText implements 
     public void onFocusChange(View view, boolean isFocused) {
         final InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(getWindowToken(), 0);
+        focusCount++;
 
-        if (isFocused) {
+        if (isFocused && focusCount == 1) {
             showDatePicker();
         }
 
