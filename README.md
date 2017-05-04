@@ -24,7 +24,7 @@ allprojects {
 - Add the dependency:
 ```gradle
 dependencies {
-    compile 'com.github.BlackBoxVision:datetimepicker-edittext:v0.3.1'
+    compile 'com.github.BlackBoxVision:datetimepicker-edittext:v0.3.2'
 }
 ```
 
@@ -44,7 +44,7 @@ dependencies {
 <dependency>
     <groupId>com.github.BlackBoxVision</groupId>
     <artifactId>datetimepicker-edittext</artifactId>
-    <version>v0.3.1</version>
+    <version>v0.3.2</version>
 </dependency>
 ```
 
@@ -57,7 +57,7 @@ dependencies {
 
 - Add the dependency:
 ```sbt
-  libraryDependencies += "com.github.BlackBoxVision" % "datetimepicker-edittext" % "v0.3.1"
+  libraryDependencies += "com.github.BlackBoxVision" % "datetimepicker-edittext" % "v0.3.2"
 ```
 
 ## Sample Usage
