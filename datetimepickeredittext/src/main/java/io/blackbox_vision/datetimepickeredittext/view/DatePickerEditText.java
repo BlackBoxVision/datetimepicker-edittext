@@ -143,8 +143,13 @@ public final class DatePickerEditText extends AppCompatEditText implements OnFoc
         return date;
     }
 
-    public DatePickerEditText setDate(@NonNull Calendar date) {
-        this.date = date;
+    public DatePickerEditText setDate(@NonNull Calendar calendar) {
+        if (textDateFormat != null) {
+            setText(textDateFormat.format(calendar.getTime()));
+        } else {
+            setText(DateUtils.toDate(calendar.getTime(), dateFormat));
+        }
+        date = calendar;
         return this;
     }
 
