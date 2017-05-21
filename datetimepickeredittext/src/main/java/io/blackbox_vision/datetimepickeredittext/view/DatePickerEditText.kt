@@ -20,7 +20,6 @@ import io.blackbox_vision.datetimepickeredittext.internal.utils.DateUtils
 import android.view.View.OnFocusChangeListener
 import android.view.View.OnClickListener
 import android.app.DatePickerDialog.OnDateSetListener
-import android.util.Log
 
 
 class DatePickerEditText : AppCompatEditText, OnFocusChangeListener, OnClickListener, OnDateSetListener {
@@ -97,11 +96,12 @@ class DatePickerEditText : AppCompatEditText, OnFocusChangeListener, OnClickList
 
     private fun showDatePicker() {
         val datePickerFragment = DatePickerFragment()
-                .setDate(date!!)
-                .setThemeId(themeId)
-                .setOnDateSetListener(this)
-                .setMinDate(minDate!!)
-                .setMaxDate(maxDate!!)
+
+        datePickerFragment.date = date
+        datePickerFragment.themeId = themeId
+        datePickerFragment.minDate = minDate
+        datePickerFragment.maxDate = maxDate
+        datePickerFragment.onDateSetListener = this
 
         datePickerFragment.show(manager!!, TAG)
     }

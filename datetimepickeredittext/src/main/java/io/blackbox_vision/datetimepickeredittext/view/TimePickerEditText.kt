@@ -94,11 +94,13 @@ class TimePickerEditText : AppCompatEditText, OnFocusChangeListener, OnClickList
     }
 
     private fun showTimePicker() {
-        TimePickerFragment()
-                .setTime(time!!)
-                .setOnTimeSetListener(this)
-                .setIs24HourView(is24HourView)
-                .show(manager!!, TAG)
+        val timePicker = TimePickerFragment()
+
+        timePicker.is24HourView = is24HourView
+        timePicker.onTimeSetListener = this
+        timePicker.time = time
+
+        timePicker.show(manager!!, TAG)
     }
 
     override fun onTimeSet(view: TimePicker, hourOfDay: Int, minute: Int) {

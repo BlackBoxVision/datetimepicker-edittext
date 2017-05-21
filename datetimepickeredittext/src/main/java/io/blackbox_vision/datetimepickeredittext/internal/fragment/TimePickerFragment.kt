@@ -11,11 +11,17 @@ import android.app.TimePickerDialog.OnTimeSetListener
 
 
 class TimePickerFragment : DialogFragment() {
-    private var onTimeSetListener: OnTimeSetListener? = null
+    var onTimeSetListener: OnTimeSetListener? = null
+        set
+
     var is24HourView: Boolean? = null
-        private set
-    private var themeId: Int? = null
-    private var time: Calendar? = null
+        set
+
+    var themeId: Int? = null
+        set
+
+    var time: Calendar? = null
+        set
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val hourOfDay: Int
@@ -42,10 +48,6 @@ class TimePickerFragment : DialogFragment() {
         return TimePickerDialog(activity, onTimeSetListener, hourOfDay, minute, is24HourView!!)
     }
 
-    fun getOnTimeSetListener(): OnTimeSetListener? {
-        return onTimeSetListener
-    }
-
     fun setOnTimeSetListener(onTimeSetListener: OnTimeSetListener): TimePickerFragment {
         this.onTimeSetListener = onTimeSetListener
         return this
@@ -56,17 +58,9 @@ class TimePickerFragment : DialogFragment() {
         return this
     }
 
-    fun getTime(): Calendar? {
-        return time
-    }
-
     fun setTime(time: Calendar): TimePickerFragment {
         this.time = time
         return this
-    }
-
-    fun getThemeId(): Int? {
-        return themeId
     }
 
     fun setThemeId(themeId: Int?): TimePickerFragment {

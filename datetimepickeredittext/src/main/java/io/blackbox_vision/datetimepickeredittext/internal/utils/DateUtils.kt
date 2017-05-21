@@ -11,7 +11,7 @@ import java.util.Locale
 
 
 object DateUtils {
-    private val LOG_TAG = DateUtils::class.simpleName;
+    private val LOG_TAG = "DateUtils"
 
     private val DATE_TEMPLATE = "dd/MM/yyyy"
     private val TIME_TEMPLATE = "kk:mm"

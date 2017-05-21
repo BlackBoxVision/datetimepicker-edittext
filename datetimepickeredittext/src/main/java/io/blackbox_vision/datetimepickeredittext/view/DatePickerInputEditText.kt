@@ -96,11 +96,12 @@ class DatePickerInputEditText : TextInputEditText, OnFocusChangeListener, OnClic
 
     private fun showDatePicker() {
         val datePickerFragment = DatePickerFragment()
-                .setDate(date!!)
-                .setThemeId(themeId)
-                .setOnDateSetListener(this)
-                .setMinDate(minDate!!)
-                .setMaxDate(maxDate!!)
+
+        datePickerFragment.date = date
+        datePickerFragment.themeId = themeId
+        datePickerFragment.minDate = minDate
+        datePickerFragment.maxDate = maxDate
+        datePickerFragment.onDateSetListener = this
 
         datePickerFragment.show(manager!!, TAG)
     }

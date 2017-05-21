@@ -14,13 +14,20 @@ import android.app.DatePickerDialog.*
 
 class DatePickerFragment : DialogFragment() {
 
-    private var onDateSetListener: OnDateSetListener? = null
-    private var date: Calendar? = null
+    var onDateSetListener: OnDateSetListener? = null
+        set
 
-    private var minDate: String? = null
-    private var maxDate: String? = null
+    var date: Calendar? = null
+        set
 
-    private var themeId: Int? = null
+    var minDate: String? = null
+        set
+
+    var maxDate: String? = null
+        set
+
+    var themeId: Int? = null
+        set
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val year: Int
@@ -59,17 +66,9 @@ class DatePickerFragment : DialogFragment() {
         return datePickerDialog
     }
 
-    fun getOnDateSetListener(): OnDateSetListener? {
-        return onDateSetListener
-    }
-
     fun setOnDateSetListener(onDateSetListener: OnDateSetListener): DatePickerFragment {
         this.onDateSetListener = onDateSetListener
         return this
-    }
-
-    fun getDate(): Calendar? {
-        return date
     }
 
     fun setDate(date: Calendar): DatePickerFragment {
@@ -77,26 +76,14 @@ class DatePickerFragment : DialogFragment() {
         return this
     }
 
-    fun getThemeId(): Int? {
-        return themeId
-    }
-
     fun setThemeId(themeId: Int?): DatePickerFragment {
         this.themeId = themeId
         return this
     }
 
-    fun getMaxDate(): String? {
-        return maxDate
-    }
-
     fun setMaxDate(maxDate: String): DatePickerFragment {
         this.maxDate = maxDate
         return this
-    }
-
-    fun getMinDate(): String? {
-        return minDate
     }
 
     fun setMinDate(minDate: String): DatePickerFragment {
