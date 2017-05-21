@@ -24,8 +24,7 @@ class TimePickerFragment : DialogFragment() {
         set
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val hourOfDay: Int
-        val minute: Int
+        val hourOfDay: Int; val minute: Int
 
         if (null != time) {
             hourOfDay = time!!.get(Calendar.HOUR_OF_DAY)

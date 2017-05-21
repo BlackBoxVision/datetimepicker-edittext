@@ -143,7 +143,7 @@ class DatePickerInputEditText : TextInputEditText, OnFocusChangeListener, OnClic
         return onFocusChangedListener
     }
 
-    fun setOnFocusChangedListener(onFocusChangedListener: View.OnFocusChangeListener): DatePickerInputEditText {
+    fun setOnFocusChangedListener(onFocusChangedListener: OnFocusChangeListener): DatePickerInputEditText {
         this.onFocusChangedListener = onFocusChangedListener
         return this
     }

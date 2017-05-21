@@ -30,9 +30,7 @@ class DatePickerFragment : DialogFragment() {
         set
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val year: Int
-        val month: Int
-        val day: Int
+        val year: Int; val month: Int; val day: Int
 
         if (null != date) {
             year = date!!.get(Calendar.YEAR)
