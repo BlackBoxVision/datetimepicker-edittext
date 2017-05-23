@@ -4,6 +4,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 
+import java.util.Calendar;
+
 import io.blackbox_vision.datetimepickeredittext.view.DatePickerEditText;
 import io.blackbox_vision.datetimepickeredittext.view.DatePickerInputEditText;
 import io.blackbox_vision.datetimepickeredittext.view.TimePickerEditText;
@@ -41,5 +43,11 @@ public final class MainActivity extends AppCompatActivity {
 
         datePickerInputEditText.setDateFormat(DateFormat.getMediumDateFormat(getApplicationContext()));
         timePickerInputEditText.setTimeFormat(DateFormat.getTimeFormat(getApplicationContext()));
+
+        datePickerEditText.setDate(Calendar.getInstance());
+        datePickerInputEditText.setDate(Calendar.getInstance());
+
+        timePickerEditText.setTime(Calendar.getInstance());
+        timePickerInputEditText.setTime(Calendar.getInstance());
     }
 }
