@@ -24,7 +24,7 @@ allprojects {
 - Add the dependency:
 ```gradle
 dependencies {
-    compile 'com.github.BlackBoxVision:datetimepicker-edittext:v0.3.3'
+    implementation 'com.github.BlackBoxVision:datetimepicker-edittext:v0.4.0'
 }
 ```
 
@@ -157,12 +157,6 @@ public final class MainActivity extends AppCompatActivity {
 
         datePickerInputEditText = (DatePickerInputEditText) findViewById(R.id.datePickerInputEditText);
         timePickerInputEditText = (TimePickerInputEditText) findViewById(R.id.timePickerInputEditText);
-	
-        datePickerEditText.setManager(getSupportFragmentManager());
-        timePickerEditText.setManager(getSupportFragmentManager());
-
-        datePickerInputEditText.setManager(getSupportFragmentManager());
-        timePickerInputEditText.setManager(getSupportFragmentManager());
     }
 }
 ```
