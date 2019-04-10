@@ -44,7 +44,7 @@ dependencies {
 <dependency>
     <groupId>com.github.BlackBoxVision</groupId>
     <artifactId>datetimepicker-edittext</artifactId>
-    <version>v0.3.3</version>
+    <version>v0.4.0</version>
 </dependency>
 ```
 
@@ -57,7 +57,7 @@ dependencies {
 
 - Add the dependency:
 ```sbt
-  libraryDependencies += "com.github.BlackBoxVision" % "datetimepicker-edittext" % "v0.3.3"
+  libraryDependencies += "com.github.BlackBoxVision" % "datetimepicker-edittext" % "v0.4.0"
 ```
 
 ## Sample Usage
