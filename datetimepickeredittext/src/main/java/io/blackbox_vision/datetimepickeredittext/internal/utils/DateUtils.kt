@@ -40,4 +40,12 @@ object DateUtils {
 
         return date
     }
+
+    private fun getCurrentDateTime(): String {
+        return SimpleDateFormat(DATE_TEMPLATE).format(System.currentTimeMillis())
+    }
+
+    fun gettingDate(strDate: String): String {
+        return strDate?.takeIf { !it.toUpperCase().equals("CR_DATE") } ?: getCurrentDateTime()
+    }
 }

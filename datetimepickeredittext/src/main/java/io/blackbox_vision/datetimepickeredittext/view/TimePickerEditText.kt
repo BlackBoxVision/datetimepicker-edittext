@@ -20,6 +20,7 @@ import io.blackbox_vision.datetimepickeredittext.internal.utils.DateUtils
 import android.view.View.OnFocusChangeListener
 import android.view.View.OnClickListener
 import android.app.TimePickerDialog.OnTimeSetListener
+import android.support.v7.app.AppCompatActivity
 
 
 class TimePickerEditText : AppCompatEditText, OnFocusChangeListener, OnClickListener, OnTimeSetListener {
@@ -58,6 +59,9 @@ class TimePickerEditText : AppCompatEditText, OnFocusChangeListener, OnClickList
         inputType = InputType.TYPE_NULL
         onFocusChangeListener = this
         setOnClickListener(this)
+
+        /*Set fragment manager*/
+        manager = (context as AppCompatActivity).supportFragmentManager
     }
 
     private fun handleAttributes(attributeSet: AttributeSet) {
@@ -121,10 +125,10 @@ class TimePickerEditText : AppCompatEditText, OnFocusChangeListener, OnClickList
         return manager
     }
 
-    fun setManager(manager: FragmentManager): TimePickerEditText {
+    /*fun setManager(manager: FragmentManager): TimePickerEditText {
         this.manager = manager
         return this
-    }
+    }*/
 
     fun getTime(): Calendar? {
         return time

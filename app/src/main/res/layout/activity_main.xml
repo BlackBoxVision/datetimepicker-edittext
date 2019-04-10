@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:orientation="vertical"
     android:focusable="false"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="io.blackbox_vision.sample.MainActivity">
 
     <io.blackbox_vision.datetimepickeredittext.view.DatePickerEditText
@@ -18,14 +18,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:hint="@string/select_date"/>
+        android:hint="@string/select_date"
+        app:maxDate="CR_DATE" />
 
     <io.blackbox_vision.datetimepickeredittext.view.TimePickerEditText
         android:id="@+id/timePickerEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:hint="@string/select_time"/>
+        android:hint="@string/select_time" />
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/dateTextInputLayout"
@@ -38,9 +39,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/select_date"
-            app:minDate="01/01/1981"
+            app:dateFormat="yyyy/MM/dd"
             app:maxDate="01/01/2050"
-            app:dateFormat="yyyy/MM/dd"/>
+            app:minDate="01/01/1981" />
 
     </android.support.design.widget.TextInputLayout>
 
@@ -54,8 +55,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/select_time"
-            app:timeFormat="kk:mm"
-            app:is24HourView="true"/>
+            app:is24HourView="true"
+            app:timeFormat="kk:mm" />
 
     </android.support.design.widget.TextInputLayout>
 
