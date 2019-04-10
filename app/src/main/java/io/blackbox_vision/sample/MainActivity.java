@@ -31,20 +31,20 @@ public final class MainActivity extends AppCompatActivity {
         datePickerInputEditText = (DatePickerInputEditText) findViewById(R.id.datePickerInputEditText);
         timePickerInputEditText = (TimePickerInputEditText) findViewById(R.id.timePickerInputEditText);
 
-        datePickerEditText.setManager(getSupportFragmentManager());
+        /*datePickerEditText.setManager(getSupportFragmentManager());
         timePickerEditText.setManager(getSupportFragmentManager());
 
         datePickerInputEditText.setManager(getSupportFragmentManager());
-        timePickerInputEditText.setManager(getSupportFragmentManager());
+        timePickerInputEditText.setManager(getSupportFragmentManager());*/
 
         // Set the date formatter with the given formatting style from device setting.
-        datePickerEditText.setDateFormat(DateFormat.getLongDateFormat(getApplicationContext()));
+//        datePickerEditText.setDateFormat(DateFormat.getLongDateFormat(getApplicationContext()));
         timePickerEditText.setTimeFormat(DateFormat.getTimeFormat(getApplicationContext()));
 
         datePickerInputEditText.setDateFormat(DateFormat.getMediumDateFormat(getApplicationContext()));
         timePickerInputEditText.setTimeFormat(DateFormat.getTimeFormat(getApplicationContext()));
 
-        datePickerEditText.setDate(Calendar.getInstance());
+//        datePickerEditText.setDate(Calendar.getInstance());
         datePickerInputEditText.setDate(Calendar.getInstance());
 
         timePickerEditText.setTime(Calendar.getInstance());

@@ -30,7 +30,9 @@ class DatePickerFragment : DialogFragment() {
         set
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val year: Int; val month: Int; val day: Int
+        val year: Int;
+        val month: Int;
+        val day: Int
 
         if (null != date) {
             year = date!!.get(Calendar.YEAR)
@@ -52,8 +54,11 @@ class DatePickerFragment : DialogFragment() {
             datePickerDialog = DatePickerDialog(activity, onDateSetListener, year, month, day)
         }
 
-        val minDateStr = if (null != minDate) minDate else DEFAULT_MIN_DATE
-        val maxDateStr = if (null != maxDate) maxDate else DEFAULT_MAX_DATE
+//        val minDateStr = if (null != minDate) minDate else DEFAULT_MIN_DATE
+//        val maxDateStr = if (null != maxDate) maxDate else DEFAULT_MAX_DATE
+
+        val minDateStr = if (null != minDate) DateUtils.gettingDate(minDate!!) else DEFAULT_MIN_DATE
+        val maxDateStr = if (null != maxDate) DateUtils.gettingDate(maxDate!!) else DEFAULT_MAX_DATE
 
         val min = DateUtils.parse(minDateStr, DEFAULT_TEMPLATE)!!.time
         val max = DateUtils.parse(maxDateStr, DEFAULT_TEMPLATE)!!.time
