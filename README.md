@@ -130,8 +130,8 @@ In your activity layout xml:
 
 The available tags are the following ones:
 - **dateTimePicker:theme**: Reference to a custom theme related to the DatePicker or TimePicker dialog style
-- **dateTimePicker:minDate**: String, it must be a string date in the format 'dd/MM/yyyy'
-- **dateTimePicker:maxDate**: remains the same as minDate
+- **dateTimePicker:minDate**: String, it must be a string date in the format 'dd/MM/yyyy' or if you want current date pass 'CR_DATE'
+- **dateTimePicker:maxDate**: String, it must be a string date in the format 'dd/MM/yyyy' or if you want current date pass 'CR_DATE'
 - **dateTimePicker:dateFormat**: String, it represents the format that the date will be shown in the EditText, the default is 'dd/MM/yyyy'
 - **dateTimePicker:timeFormat**: String, it represents the format that the time will be shown in the EditText, the default is 'HH:mm'
 - **dateTimePicker:is24HourView**: Boolean, it tells the TimePicker how to show it
