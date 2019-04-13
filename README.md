@@ -85,7 +85,8 @@ In your activity layout xml:
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:hint="@string/select_date"/>
+        android:hint="@string/select_date"
+        app:minDate="CR_DATE"/>
 
     <io.blackbox_vision.datetimepickeredittext.view.TimePickerEditText
         android:id="@+id/timePickerEditText"
@@ -135,6 +136,10 @@ The available tags are the following ones:
 - **dateTimePicker:dateFormat**: String, it represents the format that the date will be shown in the EditText, the default is 'dd/MM/yyyy'
 - **dateTimePicker:timeFormat**: String, it represents the format that the time will be shown in the EditText, the default is 'HH:mm'
 - **dateTimePicker:is24HourView**: Boolean, it tells the TimePicker how to show it
+<br><br>
+**Add support to set min or max date with current date**:
+- **app:minDate="CR_DATE"**: Set minimum date as today's date
+- **app:maxDate="CR_DATE"**: Set maximum date as today's date
 
 And in your Activity class
 
