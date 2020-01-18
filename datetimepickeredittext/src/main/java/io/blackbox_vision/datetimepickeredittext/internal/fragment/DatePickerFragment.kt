@@ -3,7 +3,7 @@ package io.blackbox_vision.datetimepickeredittext.internal.fragment
 import android.app.DatePickerDialog
 import android.app.Dialog
 import android.os.Bundle
-import android.support.v4.app.DialogFragment
+import androidx.fragment.app.DialogFragment
 
 import java.util.Calendar
 
@@ -12,7 +12,7 @@ import io.blackbox_vision.datetimepickeredittext.internal.utils.DateUtils
 import android.app.DatePickerDialog.*
 
 
-class DatePickerFragment : DialogFragment() {
+class DatePickerFragment : androidx.fragment.app.DialogFragment() {
 
     var onDateSetListener: OnDateSetListener? = null
         set

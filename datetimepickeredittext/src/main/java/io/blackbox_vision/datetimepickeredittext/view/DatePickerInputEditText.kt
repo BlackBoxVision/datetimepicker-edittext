@@ -1,8 +1,8 @@
 package io.blackbox_vision.datetimepickeredittext.view
 
 import android.content.Context
-import android.support.design.widget.TextInputEditText
-import android.support.v4.app.FragmentManager
+import com.google.android.material.textfield.TextInputEditText
+import androidx.fragment.app.FragmentManager
 import android.text.InputType
 import android.util.AttributeSet
 import android.view.View
@@ -20,14 +20,14 @@ import io.blackbox_vision.datetimepickeredittext.internal.utils.DateUtils
 import android.view.View.OnFocusChangeListener
 import android.view.View.OnClickListener
 import android.app.DatePickerDialog.OnDateSetListener
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 
 
 class DatePickerInputEditText : TextInputEditText, OnFocusChangeListener, OnClickListener, OnDateSetListener {
 
     private var onFocusChangedListener: OnFocusChangeListener? = null
 
-    private var manager: FragmentManager? = null
+    private var manager: androidx.fragment.app.FragmentManager? = null
 
     private var focusCount: Int = 0
     private var themeId: Int? = null
@@ -125,7 +125,7 @@ class DatePickerInputEditText : TextInputEditText, OnFocusChangeListener, OnClic
         date = calendar
     }
 
-    fun getManager(): FragmentManager? {
+    fun getManager(): androidx.fragment.app.FragmentManager? {
         return manager
     }
 
