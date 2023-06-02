@@ -1,8 +1,9 @@
 package io.blackbox_vision.sample;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.format.DateFormat;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Calendar;
 

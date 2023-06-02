@@ -28,7 +28,7 @@
         android:layout_marginBottom="8dp"
         android:hint="@string/select_time" />
 
-    <android.support.design.widget.TextInputLayout
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/dateTextInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -39,13 +39,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/select_date"
-            app:dateFormat="yyyy/MM/dd"
-            app:maxDate="01/01/2050"
-            app:minDate="01/01/1981" />
+            app:dateFormat="yyyy-MM-dd"
+            app:maxDate="2050-01-01"
+            app:minDate="1981-01-01" />
 
-    </android.support.design.widget.TextInputLayout>
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <android.support.design.widget.TextInputLayout
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/timeTextInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -58,6 +58,6 @@
             app:is24HourView="true"
             app:timeFormat="kk:mm" />
 
-    </android.support.design.widget.TextInputLayout>
+    </com.google.android.material.textfield.TextInputLayout>
 
 </LinearLayout>

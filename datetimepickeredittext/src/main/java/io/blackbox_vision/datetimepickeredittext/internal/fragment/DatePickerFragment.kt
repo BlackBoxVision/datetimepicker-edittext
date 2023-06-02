@@ -3,13 +3,13 @@ package io.blackbox_vision.datetimepickeredittext.internal.fragment
 import android.app.DatePickerDialog
 import android.app.Dialog
 import android.os.Bundle
-import android.support.v4.app.DialogFragment
 
 import java.util.Calendar
 
 import io.blackbox_vision.datetimepickeredittext.internal.utils.DateUtils
 
 import android.app.DatePickerDialog.*
+import androidx.fragment.app.DialogFragment
 
 
 class DatePickerFragment : DialogFragment() {
@@ -49,9 +49,9 @@ class DatePickerFragment : DialogFragment() {
         val datePickerDialog: DatePickerDialog
 
         if (null != themeId && themeId != 0) {
-            datePickerDialog = DatePickerDialog(activity, themeId!!, onDateSetListener, year, month, day)
+            datePickerDialog = DatePickerDialog(requireActivity(), themeId!!, onDateSetListener, year, month, day)
         } else {
-            datePickerDialog = DatePickerDialog(activity, onDateSetListener, year, month, day)
+            datePickerDialog = DatePickerDialog(requireActivity(), onDateSetListener, year, month, day)
         }
 
 //        val minDateStr = if (null != minDate) minDate else DEFAULT_MIN_DATE
@@ -95,8 +95,8 @@ class DatePickerFragment : DialogFragment() {
     }
 
     companion object {
-        private val DEFAULT_TEMPLATE = "dd/MM/yyyy"
-        private val DEFAULT_MIN_DATE = "01/01/1980"
-        private val DEFAULT_MAX_DATE = "01/01/2100"
+        private val DEFAULT_TEMPLATE = "yyyy-MM-dd"
+        private val DEFAULT_MIN_DATE = "1980-01-01"
+        private val DEFAULT_MAX_DATE = "2100-01-01"
     }
 }

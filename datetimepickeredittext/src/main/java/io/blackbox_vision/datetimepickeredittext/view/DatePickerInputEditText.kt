@@ -1,26 +1,24 @@
 package io.blackbox_vision.datetimepickeredittext.view
 
+import android.app.Activity
+import android.app.DatePickerDialog.OnDateSetListener
 import android.content.Context
-import android.support.design.widget.TextInputEditText
-import android.support.v4.app.FragmentManager
+import android.content.ContextWrapper
 import android.text.InputType
 import android.util.AttributeSet
 import android.view.View
+import android.view.View.OnClickListener
+import android.view.View.OnFocusChangeListener
 import android.view.inputmethod.InputMethodManager
 import android.widget.DatePicker
-
-import java.text.DateFormat
-import java.util.Calendar
-import java.util.Locale
-
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentManager
+import com.google.android.material.textfield.TextInputEditText
 import io.blackbox_vision.datetimepickeredittext.R
 import io.blackbox_vision.datetimepickeredittext.internal.fragment.DatePickerFragment
 import io.blackbox_vision.datetimepickeredittext.internal.utils.DateUtils
-
-import android.view.View.OnFocusChangeListener
-import android.view.View.OnClickListener
-import android.app.DatePickerDialog.OnDateSetListener
-import android.support.v7.app.AppCompatActivity
+import java.text.DateFormat
+import java.util.*
 
 
 class DatePickerInputEditText : TextInputEditText, OnFocusChangeListener, OnClickListener, OnDateSetListener {
@@ -60,7 +58,7 @@ class DatePickerInputEditText : TextInputEditText, OnFocusChangeListener, OnClic
         setOnClickListener(this)
 
         /*Set fragment manager*/
-        manager = (context as AppCompatActivity).supportFragmentManager
+        manager = (unwrap(context) as AppCompatActivity).supportFragmentManager
     }
 
     private fun handleAttributes(attributeSet: AttributeSet) {
@@ -191,6 +189,14 @@ class DatePickerInputEditText : TextInputEditText, OnFocusChangeListener, OnClic
     fun setMinDate(minDate: String): DatePickerInputEditText {
         this.minDate = minDate
         return this
+    }
+
+    private fun unwrap(context: Context): Activity? {
+        var _context: Context? = context
+        while (_context !is Activity && _context is ContextWrapper) {
+            _context = _context.baseContext
+        }
+        return _context as Activity?
     }
 
     companion object {
