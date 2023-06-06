@@ -3,11 +3,11 @@ package io.blackbox_vision.datetimepickeredittext.internal.fragment
 import android.app.Dialog
 import android.app.TimePickerDialog
 import android.os.Bundle
-import android.support.v4.app.DialogFragment
 
 import java.util.Calendar
 
 import android.app.TimePickerDialog.OnTimeSetListener
+import androidx.fragment.app.DialogFragment
 
 
 class TimePickerFragment : DialogFragment() {

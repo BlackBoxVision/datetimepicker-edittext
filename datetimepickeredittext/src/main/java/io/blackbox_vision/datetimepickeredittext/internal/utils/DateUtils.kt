@@ -13,7 +13,7 @@ import java.util.Locale
 object DateUtils {
     private val LOG_TAG = "DateUtils"
 
-    private val DATE_TEMPLATE = "dd/MM/yyyy"
+    private val DATE_TEMPLATE = "yyyy-MM-dd"
     private val TIME_TEMPLATE = "kk:mm"
 
     private fun format(date: Date, template: String): CharSequence {

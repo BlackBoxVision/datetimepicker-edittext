@@ -1,8 +1,6 @@
 package io.blackbox_vision.datetimepickeredittext.view
 
 import android.content.Context
-import android.support.v4.app.FragmentManager
-import android.support.v7.widget.AppCompatEditText
 import android.text.InputType
 import android.util.AttributeSet
 import android.view.View
@@ -20,7 +18,9 @@ import io.blackbox_vision.datetimepickeredittext.internal.utils.DateUtils
 import android.view.View.OnFocusChangeListener
 import android.view.View.OnClickListener
 import android.app.DatePickerDialog.OnDateSetListener
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatEditText
+import androidx.fragment.app.FragmentManager
 
 
 class DatePickerEditText : AppCompatEditText, OnFocusChangeListener, OnClickListener, OnDateSetListener {
